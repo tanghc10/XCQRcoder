@@ -3,30 +3,129 @@
 
     <item
         is-multidex="false"
-        jar="/Users/yangxu/.android/build-cache/4045b25e3c8e3d9af2baaa611c2a6df514d38ebc/output/jars/classes.jar"
+        jar="C:\Users\73843\.android\build-cache\e420036c80d9a2d697d57dbcd80828ae0181f4c6\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_72b08210cb2182d080aded429cb4351356c3f21f.jar" />
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\classes_deab90dbd8d65c70752eaf5af20f1e3d96673430.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\githubFile\XCQRcoder\android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6fb22cd6a731a70cd194b1c9ad0b335a39705fbc">
+        <dex dex="F:\githubFile\XCQRcoder\android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a3c3e1c6ff29396bf2d50912562a9045c21ddd6f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\githubFile\HelloWorld\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_9dc8deeb45746dc4b8e75977fa7c13bad9e0dee5\classes.dex" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yangxu/.android/build-cache/c71a866a537a03866353ce913b1666f3e9c321ca/output/jars/classes.jar"
+        jar="C:\Users\73843\.android\build-cache\e420036c80d9a2d697d57dbcd80828ae0181f4c6\output\jars\libs\internal_impl-23.4.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="521470facaa304fe7a3b60b48ac019de0759e2fe">
-        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_6dbce02bf37d24c27837f0a8986651a979fa23b0.jar" />
+        revision="25.0.0"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_061bd4a308166f601082749ea6e81f29b7c23d5d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\73843\.android\build-cache\a5cd2ac97b4042e730099dd9a4e4042b176b0662\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_00157937b97e5202764483fd49cd00089a30595e\classes.dex" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/yangxu/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.1.46.android/108717c93f7aec31fb86db57cb4ad1e26034c638/fastjson-1.1.46.android.jar"
+        jar="C:\Users\73843\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="108717c93f7aec31fb86db57cb4ad1e26034c638">
-        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/fastjson-1.1.46.android_e2ead82f48272ac0ae8f52457da2dba0849015b5.jar" />
+        revision="25.0.0"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_9949612c5a87b27c8c459233a840dcdfeb196490.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\.android\build-cache\7f3e15d8bae2f549b66d70e893dbc67798aa53d2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\classes_15440274a82743d3aecab0f028d37a0da737e189.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\.android\build-cache\216852892ca5fa428afb5a93e0b54adf261b35fb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\classes_2af6ff19f5e126656e03de601773f3bd5979109f.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\githubFile\HelloWorld\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4f597ff8cc634eb76126159c951a217b53b566ba">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a6afda2c4f526e85d95bde83072cc876f0f711de\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\githubFile\XCQRcoder\android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="F:\githubFile\XCQRcoder\android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_1779cc0d8c702edea8be3df53a7c362d2c5e8b51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\73843\.android\build-cache\e80fea98a5bb84635af5458f6fc0a626aa5a8c08\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_03076eff1a3f4bc29ffd3b60627841f465a2b172\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\.gradle\caches\modules-2\files-2.1\com.alibaba\fastjson\1.1.45\9346228ffdcd675f909726670afebe186b270314\fastjson-1.1.45.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9346228ffdcd675f909726670afebe186b270314">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\fastjson-1.1.45_dc8c59722ae40a0123f9b8ccca61477974b71143.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\73843\.android\build-cache\ebc71e067dd79f49494c14fe860d74aac275cae6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\pre-dexed\debug\classes_5d2e4591270f29da1236029435f44f346f72f305.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\73843\.android\build-cache\3a7163b5c2bf33e69f9cd4604078f35afc0b7c87\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5c661d2cd2b4e0f3236d37b1e2b84b2b3a0a19f5">
+        <dex dex="F:\githubFile\HelloWorld\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e83172de7e1a295cbdaa1f0fdb0af3c854337fb9\classes.dex" />
     </item>
 
 </items>
