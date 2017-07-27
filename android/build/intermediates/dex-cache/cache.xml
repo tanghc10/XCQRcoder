@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/yangxu/.android/build-cache/4045b25e3c8e3d9af2baaa611c2a6df514d38ebc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_72b08210cb2182d080aded429cb4351356c3f21f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yangxu/.android/build-cache/c71a866a537a03866353ce913b1666f3e9c321ca/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="521470facaa304fe7a3b60b48ac019de0759e2fe">
+        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_6dbce02bf37d24c27837f0a8986651a979fa23b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/yangxu/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.1.46.android/108717c93f7aec31fb86db57cb4ad1e26034c638/fastjson-1.1.46.android.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="108717c93f7aec31fb86db57cb4ad1e26034c638">
+        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/fastjson-1.1.46.android_e2ead82f48272ac0ae8f52457da2dba0849015b5.jar" />
+    </item>
+
+</items>
