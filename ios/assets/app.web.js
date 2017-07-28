@@ -506,7 +506,7 @@
 /* 8 */
 /***/ (function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -531,13 +531,16 @@
 	//
 
 	// var navigator = weex.requireModule('navigator')
-
+	var globalEvent = weex.requireModule('globalEvent');
+	globalEvent.addEventListener("geolocation", function (e) {
+	  console.log("get geolocation", e);
+	});
 	exports.default = {
+
 	  mounted: function mounted() {
 	    var that = this.$root;
 	    console.log('el', this.$refs.scanner);
 	    // this.$refs.scanner.focus();
-	    this.$refs.scanner.startReading();
 	    // console.log('weex config',weex.config)
 	    // navigator.push({
 	    //     url: '',
@@ -554,23 +557,24 @@
 	    update: function update(e) {
 	      this.target = 'Weex';
 	      console.log('target:', this.target);
+	    },
+	    jump: function jump() {
+	      this.$refs.scanner.startReading();
+	      // let scanPageURL = this.getBaseUrl(weex.config.bundleUrl)+'/'+'scanPage.weex.js';
+	      // console.log('------weex config url',weex.config.bundleUrl);
+	      // console.log('------scan url',scanPageURL);
+	      // navigator.push({
+	      //   url: scanPageURL,
+	      //   animated: "true"
+	      // }, event => {
+	      //   console.log({ message: 'callback: ' + event })
+	      // })
+	    },
+	    getBaseUrl: function getBaseUrl(url) {
+	      var urlArray = url.split('/');
+	      var newArray = urlArray.slice(0, urlArray.length - 1);
+	      return newArray.join('/');
 	    }
-	    // jump(){
-	    //   let scanPageURL = this.getBaseUrl(weex.config.bundleUrl)+'/'+'scanPage.weex.js';
-	    //   console.log('------weex config url',weex.config.bundleUrl);
-	    //   console.log('------scan url',scanPageURL);
-	    //   navigator.push({
-	    //     url: scanPageURL,
-	    //     animated: "true"
-	    //   }, event => {
-	    //     console.log({ message: 'callback: ' + event })
-	    //   })
-	    // },
-	    // getBaseUrl(url){
-	    //   let urlArray = url.split('/');
-	    //   let newArray =  urlArray.slice(0,urlArray.length-1);
-	    //   return newArray.join('/');
-	    // }
 	  }
 	};
 
@@ -580,13 +584,13 @@
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
-	    staticClass: "wrapper"
+	    staticClass: "wrapper",
+	    on: {
+	      "click": _vm.update
+	    }
 	  }, [_c('wxscanner', {
 	    ref: "scanner",
-	    staticClass: "scanner",
-	    attrs: {
-	      "id": "wxscanner"
-	    }
+	    staticClass: "scanner"
 	  }), _vm._v(" "), _c('button', {
 	    on: {
 	      "click": function($event) {
