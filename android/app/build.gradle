@@ -19,9 +19,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+//        debug {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
     }
 }
 
@@ -31,7 +35,11 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.alibaba:fastjson:1.1.45'
-    compile 'com.taobao.android:weex_sdk:0.10.0@aar'
+    compile 'com.taobao.android:weex_sdk:0.11.0'
     compile 'com.android.support:design:23.4.0'
+    compile 'com.taobao.android:weex_sdk:0.11.0'
+    compile 'com.google.zxing:core:3.2.1'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.0.7@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.0.7@aar'
     testCompile 'junit:junit:4.12'
 }

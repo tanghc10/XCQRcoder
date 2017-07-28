@@ -1,5 +1,9 @@
 package com.xiaoantech.helloworld;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
          * option 可以为空，或者通过option传入 js需要的参数。例如bundle js的地址等。
          * jsonInitData 可以为空。
          */
-        mWXSDKInstance.render("HelloWorld", WXFileUtils.loadAsset("foo.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        checkPermission();
+        mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("app.weex.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
     }
 
     @Override
@@ -89,4 +94,12 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
         }
     }
 
-}
+    private void checkPermission() {
+        int permisson = PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA);
+
+        if (permisson != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
+    }
