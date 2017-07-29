@@ -1,3 +1,3 @@
-import foo from './src/foo.vue'
-foo.el = '#root'
-export default new Vue(foo);
+import scanner from './src/scanner.vue'
+scanner.el = '#root'
+export default new Vue(scanner);

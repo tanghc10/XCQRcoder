@@ -52,14 +52,14 @@
 	  value: true
 	});
 
-	var _foo = __webpack_require__(1);
+	var _scanner = __webpack_require__(1);
 
-	var _foo2 = _interopRequireDefault(_foo);
+	var _scanner2 = _interopRequireDefault(_scanner);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_foo2.default.el = '#root';
-	exports.default = new Vue(_foo2.default);
+	_scanner2.default.el = '#root';
+	exports.default = new Vue(_scanner2.default);
 
 /***/ }),
 /* 1 */
@@ -88,10 +88,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/foo.vue"
+	__vue_options__.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/scanner.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-503fbbf1"
+	__vue_options__._scopeId = "data-v-af9470ae"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -111,10 +111,16 @@
 
 	module.exports = {
 	  "wrapper": {
+	    "alignItems": "center"
+	  },
+	  "scanner-container": {
 	    "alignItems": "center",
-	    "marginTop": 200
+	    "marginTop": 100
 	  },
 	  "title": {
+	    "fontSize": 48
+	  },
+	  "counter": {
 	    "fontSize": 48
 	  },
 	  "logo": {
@@ -122,8 +128,19 @@
 	    "height": 82
 	  },
 	  "scanner": {
+	    "width": 500,
+	    "height": 500,
+	    "margin": 50
+	  },
+	  "button": {
+	    "width": 200,
+	    "height": 80,
+	    "fontSize": 40,
+	    "marginTop": 100
+	  },
+	  "input": {
 	    "width": 400,
-	    "height": 400
+	    "height": 40
 	  }
 	}
 
@@ -131,7 +148,7 @@
 /* 3 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -154,29 +171,47 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
-	// var navigator = weex.requireModule('navigator')
+	var navigator = weex.requireModule('navigator');
 	var globalEvent = weex.requireModule('globalEvent');
-	globalEvent.addEventListener("geolocation", function (e) {
-	  console.log("get geolocation", e);
-	});
+	var storage = weex.requireModule('storage');
 	exports.default = {
-
-	  mounted: function mounted() {
-	    var that = this.$root;
-	    console.log('el', this.$refs.scanner);
-	    // this.$refs.scanner.focus();
-	    // console.log('weex config',weex.config)
-	    // navigator.push({
-	    //     url: '',
-	    //     animated: "true"
-	    //   }, event => {
-	    //     console.log({ message: 'callback: ' + event })
-	    //   })
+	  created: function created() {
+	    var that = this;
+	    globalEvent.addEventListener('scannnerEvent', function (e) {
+	      that.getScannerString(e);
+	    });
+	    storage.getItem('IMEIList', function (event) {
+	      var IMEIList = event.data;
+	      console.log('--data--' + IMEIList);
+	      if (IMEIList) {
+	        IMEIList = that.getArrayWithString(IMEIList);
+	        that.totalIMEI = IMEIList.length;
+	      }
+	    });
 	  },
+
 	  data: {
-	    logoUrl: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png',
-	    target: 'World'
+	    target: 'World',
+	    totalIMEI: 0,
+	    pbValue: 0,
+	    ptValue: 0,
+	    pgValue: 0
 	  },
 	  methods: {
 	    update: function update(e) {
@@ -184,21 +219,98 @@
 	      console.log('target:', this.target);
 	    },
 	    jump: function jump() {
-	      this.$refs.scanner.startReading();
-	      // let scanPageURL = this.getBaseUrl(weex.config.bundleUrl)+'/'+'scanPage.weex.js';
-	      // console.log('------weex config url',weex.config.bundleUrl);
-	      // console.log('------scan url',scanPageURL);
-	      // navigator.push({
-	      //   url: scanPageURL,
-	      //   animated: "true"
-	      // }, event => {
-	      //   console.log({ message: 'callback: ' + event })
-	      // })
+	      var scanPageURL = this.getBaseUrl(weex.config.bundleUrl) + '/' + 'sendPage.weex.js';
+	      console.log('------weex config url', weex.config.bundleUrl);
+	      console.log('------scan url', scanPageURL);
+	      navigator.push({
+	        url: scanPageURL,
+	        animated: "true"
+	      }, function (event) {
+	        console.log({ message: 'callback: ' + event });
+	      });
 	    },
 	    getBaseUrl: function getBaseUrl(url) {
 	      var urlArray = url.split('/');
 	      var newArray = urlArray.slice(0, urlArray.length - 1);
 	      return newArray.join('/');
+	    },
+	    getScannerString: function getScannerString(result) {
+	      console.log(result);
+	      var string = result.result;
+	      var newIMEI = void 0;
+	      if (string.IMEI) {
+	        newIMEI = string.IMEI;
+	      } else {
+	        var strArray = string.split(';');
+	        console.log('array' + strArray);
+	        console.log(strArray.length);
+	        if (strArray.length > 2) {
+	          console.log('--------- ');
+	          var IMEIString = strArray[2];
+	          console.log('------' + IMEIString);
+	          if (IMEIString.indexOf('IMEI') >= 0) {
+	            console.log('string' + IMEIString);
+	            newIMEI = IMEIString.split(':')[1];
+	          }
+	        }
+	      }
+	      console.log(newIMEI);
+	      this.dealWithIMEI(newIMEI);
+	    },
+	    getStringWithArray: function getStringWithArray(array) {
+	      console.log('----getStr----', array);
+	      var str = '';
+	      for (var i = 0; i < array.length; i++) {
+	        console.log('----IMEI----', array[i]);
+	        str = str + array[i] + '\n';
+	      }
+	      console.log('----result----', str);
+	      return str;
+	    },
+	    getArrayWithString: function getArrayWithString(string) {
+	      var array = string.split('\n');
+	      return array.slice(0, array.length - 1);
+	    },
+	    dealWithIMEI: function dealWithIMEI(IMEI) {
+	      var _this = this;
+
+	      storage.getItem('IMEIList', function (event) {
+	        var IMEIList = event.data;
+	        console.log('--data--' + IMEIList);
+	        if (IMEIList) {
+	          IMEIList = _this.getArrayWithString(IMEIList);
+	          console.log('storaged data -- -- --', IMEIList);
+	          for (var i = 0; i < IMEIList.length; i++) {
+	            if (IMEIList[i] == IMEI) {
+	              return;
+	            }
+	          }
+	          _this.totalIMEI++;
+	          IMEIList.push(IMEI);
+	          IMEIList = _this.getStringWithArray(IMEIList);
+	          storage.setItem('IMEIList', IMEIList);
+	        } else {
+	          IMEIList = new Array(IMEI);
+	          console.log('---imeilist', IMEIList);
+	          IMEIList = _this.getStringWithArray(IMEIList);
+	          storage.setItem('IMEIList', IMEIList, function (event) {
+	            console.log('set success', event.data);
+	          });
+	        }
+	        console.log('----storge----' + event.data);
+	      });
+	    },
+	    pbchange: function pbchange(event) {
+	      this.pbValue = event.value;
+	    },
+	    ptchange: function ptchange(event) {
+	      this.ptValue = event.value;
+	    },
+	    pgchange: function pgchange(event) {
+	      this.pgValue = event.value;
+	    },
+	    send: function send() {
+	      console.log(this.pbValue, this.ptValue, this.pgValue);
 	    }
 	  }
 	};
@@ -213,13 +325,44 @@
 	    on: {
 	      "click": _vm.update
 	    }
-	  }, [_c('wxscanner', {
+	  }, [_c('div', {
+	    staticClass: ["scanner-container"]
+	  }, [_c('text', {
+	    staticClass: ["counter"]
+	  }, [_vm._v(_vm._s(_vm.totalIMEI == 0 ? '--' : _vm.totalIMEI))]), _c('wxscanner', {
 	    ref: "scanner",
 	    staticClass: ["scanner"]
-	  }), _c('button', {
+	  })], 1), _c('div', [_c('text', [_vm._v("生产批次")]), _c('input', {
+	    staticClass: ["input"],
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "Input Text"
+	    },
+	    on: {
+	      "change": _vm.pbchange
+	    }
+	  })]), _c('div', [_c('text', [_vm._v("产品类别")]), _c('input', {
+	    staticClass: ["input"],
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "Input Text"
+	    },
+	    on: {
+	      "change": _vm.ptchange
+	    }
+	  })]), _c('div', [_c('text', [_vm._v("产品代别")]), _c('input', {
+	    staticClass: ["input"],
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "Input Text"
+	    },
+	    on: {
+	      "change": _vm.pgchange
+	    }
+	  })]), _c('button', {
 	    on: {
 	      "click": function($event) {
-	        _vm.jump()
+	        _vm.send()
 	      }
 	    }
 	  }, [_vm._v("跳转")])], 1)

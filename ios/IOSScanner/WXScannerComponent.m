@@ -9,13 +9,13 @@
 #import "WXScannerComponent.h"
 #import <WeexSDK/WeexSDK.h>
 #import <AVFoundation/AVFoundation.h>
-
+#import "AppDelegate.h"
 @interface WXScannerComponent ()<AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 @property (strong, nonatomic) UIView *boxView;
 @property (strong, nonatomic) CALayer *scanLayer;
-
+@property (strong,nonatomic)    WXSDKInstance *instance;
 @end
 
 @implementation WXScannerComponent
@@ -26,13 +26,16 @@ WX_EXPORT_METHOD(@selector(stopReading))
 
 - (instancetype)initWithRef:(NSString *)ref type:(NSString *)type styles:(NSDictionary *)styles attributes:(NSDictionary *)attributes events:(NSArray *)events weexInstance:(WXSDKInstance *)weexInstance{
     if(self = [super initWithRef:ref type:type styles:styles attributes:attributes events:events weexInstance:weexInstance]){
-        self.view.frame = CGRectMake(0,0,[styles[@"width"] integerValue],[styles[@"height"] integerValue]);
-        NSLog(@"%@",styles);
-        NSLog(@"%@",self.view.layer.description);
+        self.view.frame = CGRectMake(0,0,[self calculateSize:[styles[@"width"] integerValue]],[self calculateSize:[styles[@"height"] integerValue]]);
+        AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        self.instance =  appDelegate.getWXInstance;
+
         [self initScanner];
+        [self startReading];
     }
     return self;
 }
+
 
 -(BOOL)initScanner{
     NSError *error;
@@ -118,24 +121,9 @@ WX_EXPORT_METHOD(@selector(stopReading))
             AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
             if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
                 NSData *jsonData = [[metadataObj stringValue] dataUsingEncoding:NSUTF8StringEncoding];
-                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-                NSLog(@"%@",dic.description);
-                NSString *IMEI;
-                if(dic == nil){
-                    NSString *string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                    NSArray *array = [string componentsSeparatedByString:@";"];
-                    if (array.count >2) {
-                        NSString *str = [array objectAtIndex:2];
-                        IMEI = [[str componentsSeparatedByString:@":"] objectAtIndex:1];
-                    }
-                }else{
-                    IMEI = [dic valueForKey:@"IMEI"];
-                }
-                
-                if (IMEI != nil) {
-                    [[[WXSDKInstance alloc] init] fireGlobalEvent:@"geolocation" params:@{@"key":@"value"}];
-
-                }
+                NSString *string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                [_instance fireGlobalEvent:@"scannnerEvent" params:@{@"result":string}];
+                [self startReading];
             }
         });
         
@@ -153,4 +141,10 @@ WX_EXPORT_METHOD(@selector(stopReading))
 {
     NSLog(@"you got it");
 }
+
+-(float)calculateSize:(int)width{
+    return width*([UIScreen mainScreen].bounds.size.width)/750;
+}
+
+
 @end

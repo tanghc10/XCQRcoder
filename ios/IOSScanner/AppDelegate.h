@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <WeexSDK/WeexSDK.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+-(WXSDKInstance*)getWXInstance;
 
 @end
 

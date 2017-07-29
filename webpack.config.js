@@ -19,7 +19,7 @@ function getBaseConfig() {
     return {
         entry: {
             app: path.resolve('./app.js'),
-            scanPage: path.resolve('./src/pages/scanPage/scanPage.js'),
+            sendPage: path.resolve('./src/pages/sendPage/sendPage.js'),
         },
         output: {
             path: 'dist',

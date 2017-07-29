@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <WeexSDK/WXSDKInstance.h>
-
+#import "AppDelegate.h"
 @interface ViewController ()
 @property(nonatomic,strong)WXSDKInstance *instance;
 @property(nonatomic,strong)UIView   *weexView;
@@ -23,8 +23,8 @@
 
 }
 - (void)render{
-    [_instance destroyInstance];
-    _instance = [[WXSDKInstance alloc] init];
+       AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    _instance = appDelegate.getWXInstance;
     _instance.viewController = self;
     _instance.frame = self.view.frame;
     __weak typeof(self) weakSelf = self;

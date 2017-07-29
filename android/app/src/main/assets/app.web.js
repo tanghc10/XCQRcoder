@@ -52,14 +52,14 @@
 	  value: true
 	});
 
-	var _foo = __webpack_require__(1);
+	var _scanner = __webpack_require__(1);
 
-	var _foo2 = _interopRequireDefault(_foo);
+	var _scanner2 = _interopRequireDefault(_scanner);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_foo2.default.el = '#root';
-	exports.default = new Vue(_foo2.default);
+	_scanner2.default.el = '#root';
+	exports.default = new Vue(_scanner2.default);
 
 /***/ }),
 /* 1 */
@@ -79,9 +79,9 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/foo.vue"
+	Component.options.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/scanner.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-	if (Component.options.functional) {console.error("[vue-loader] foo.vue: functional components are not supported with templates, they should use render functions.")}
+	if (Component.options.functional) {console.error("[vue-loader] scanner.vue: functional components are not supported with templates, they should use render functions.")}
 
 	/* hot reload */
 	if (false) {(function () {
@@ -90,9 +90,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-6f93b572", Component.options)
+	    hotAPI.createRecord("data-v-018b95ff", Component.options)
 	  } else {
-	    hotAPI.reload("data-v-6f93b572", Component.options)
+	    hotAPI.reload("data-v-018b95ff", Component.options)
 	  }
 	})()}
 
@@ -110,13 +110,13 @@
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	if(content.locals) module.exports = content.locals;
 	// add the styles to the DOM
-	var update = __webpack_require__(5)("121e5c68", content, false);
+	var update = __webpack_require__(5)("0ce7eeff", content, false);
 	// Hot Module Replacement
 	if(false) {
 	 // When the styles change, update the <style> tags
 	 if(!content.locals) {
-	   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6f93b572!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./foo.vue", function() {
-	     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6f93b572!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./foo.vue");
+	   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-018b95ff!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./scanner.vue", function() {
+	     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-018b95ff!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./scanner.vue");
 	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 	     update(newContent);
 	   });
@@ -134,7 +134,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.wrapper { align-items: center; margin-top: 200px;\n}\n.title { font-size: 48px;\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 400px;height: 400px\n}\n", ""]);
+	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px\n}\n.input{width: 400px;height: 40px\n}\n", ""]);
 
 	// exports
 
@@ -506,7 +506,7 @@
 /* 8 */
 /***/ (function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -529,29 +529,47 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
-	// var navigator = weex.requireModule('navigator')
+	var navigator = weex.requireModule('navigator');
 	var globalEvent = weex.requireModule('globalEvent');
-	globalEvent.addEventListener("geolocation", function (e) {
-	  console.log("get geolocation", e);
-	});
+	var storage = weex.requireModule('storage');
 	exports.default = {
-
-	  mounted: function mounted() {
-	    var that = this.$root;
-	    console.log('el', this.$refs.scanner);
-	    // this.$refs.scanner.focus();
-	    // console.log('weex config',weex.config)
-	    // navigator.push({
-	    //     url: '',
-	    //     animated: "true"
-	    //   }, event => {
-	    //     console.log({ message: 'callback: ' + event })
-	    //   })
+	  created: function created() {
+	    var that = this;
+	    globalEvent.addEventListener('scannnerEvent', function (e) {
+	      that.getScannerString(e);
+	    });
+	    storage.getItem('IMEIList', function (event) {
+	      var IMEIList = event.data;
+	      console.log('--data--' + IMEIList);
+	      if (IMEIList) {
+	        IMEIList = that.getArrayWithString(IMEIList);
+	        that.totalIMEI = IMEIList.length;
+	      }
+	    });
 	  },
+
 	  data: {
-	    logoUrl: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png',
-	    target: 'World'
+	    target: 'World',
+	    totalIMEI: 0,
+	    pbValue: 0,
+	    ptValue: 0,
+	    pgValue: 0
 	  },
 	  methods: {
 	    update: function update(e) {
@@ -559,21 +577,98 @@
 	      console.log('target:', this.target);
 	    },
 	    jump: function jump() {
-	      this.$refs.scanner.startReading();
-	      // let scanPageURL = this.getBaseUrl(weex.config.bundleUrl)+'/'+'scanPage.weex.js';
-	      // console.log('------weex config url',weex.config.bundleUrl);
-	      // console.log('------scan url',scanPageURL);
-	      // navigator.push({
-	      //   url: scanPageURL,
-	      //   animated: "true"
-	      // }, event => {
-	      //   console.log({ message: 'callback: ' + event })
-	      // })
+	      var scanPageURL = this.getBaseUrl(weex.config.bundleUrl) + '/' + 'sendPage.weex.js';
+	      console.log('------weex config url', weex.config.bundleUrl);
+	      console.log('------scan url', scanPageURL);
+	      navigator.push({
+	        url: scanPageURL,
+	        animated: "true"
+	      }, function (event) {
+	        console.log({ message: 'callback: ' + event });
+	      });
 	    },
 	    getBaseUrl: function getBaseUrl(url) {
 	      var urlArray = url.split('/');
 	      var newArray = urlArray.slice(0, urlArray.length - 1);
 	      return newArray.join('/');
+	    },
+	    getScannerString: function getScannerString(result) {
+	      console.log(result);
+	      var string = result.result;
+	      var newIMEI = void 0;
+	      if (string.IMEI) {
+	        newIMEI = string.IMEI;
+	      } else {
+	        var strArray = string.split(';');
+	        console.log('array' + strArray);
+	        console.log(strArray.length);
+	        if (strArray.length > 2) {
+	          console.log('--------- ');
+	          var IMEIString = strArray[2];
+	          console.log('------' + IMEIString);
+	          if (IMEIString.indexOf('IMEI') >= 0) {
+	            console.log('string' + IMEIString);
+	            newIMEI = IMEIString.split(':')[1];
+	          }
+	        }
+	      }
+	      console.log(newIMEI);
+	      this.dealWithIMEI(newIMEI);
+	    },
+	    getStringWithArray: function getStringWithArray(array) {
+	      console.log('----getStr----', array);
+	      var str = '';
+	      for (var i = 0; i < array.length; i++) {
+	        console.log('----IMEI----', array[i]);
+	        str = str + array[i] + '\n';
+	      }
+	      console.log('----result----', str);
+	      return str;
+	    },
+	    getArrayWithString: function getArrayWithString(string) {
+	      var array = string.split('\n');
+	      return array.slice(0, array.length - 1);
+	    },
+	    dealWithIMEI: function dealWithIMEI(IMEI) {
+	      var _this = this;
+
+	      storage.getItem('IMEIList', function (event) {
+	        var IMEIList = event.data;
+	        console.log('--data--' + IMEIList);
+	        if (IMEIList) {
+	          IMEIList = _this.getArrayWithString(IMEIList);
+	          console.log('storaged data -- -- --', IMEIList);
+	          for (var i = 0; i < IMEIList.length; i++) {
+	            if (IMEIList[i] == IMEI) {
+	              return;
+	            }
+	          }
+	          _this.totalIMEI++;
+	          IMEIList.push(IMEI);
+	          IMEIList = _this.getStringWithArray(IMEIList);
+	          storage.setItem('IMEIList', IMEIList);
+	        } else {
+	          IMEIList = new Array(IMEI);
+	          console.log('---imeilist', IMEIList);
+	          IMEIList = _this.getStringWithArray(IMEIList);
+	          storage.setItem('IMEIList', IMEIList, function (event) {
+	            console.log('set success', event.data);
+	          });
+	        }
+	        console.log('----storge----' + event.data);
+	      });
+	    },
+	    pbchange: function pbchange(event) {
+	      this.pbValue = event.value;
+	    },
+	    ptchange: function ptchange(event) {
+	      this.ptValue = event.value;
+	    },
+	    pgchange: function pgchange(event) {
+	      this.pgValue = event.value;
+	    },
+	    send: function send() {
+	      console.log(this.pbValue, this.ptValue, this.pgValue);
 	    }
 	  }
 	};
@@ -588,22 +683,53 @@
 	    on: {
 	      "click": _vm.update
 	    }
-	  }, [_c('wxscanner', {
+	  }, [_c('div', {
+	    staticClass: "scanner-container"
+	  }, [_c('text', {
+	    staticClass: "counter"
+	  }, [_vm._v(_vm._s(_vm.totalIMEI == 0 ? '--' : _vm.totalIMEI))]), _vm._v(" "), _c('wxscanner', {
 	    ref: "scanner",
 	    staticClass: "scanner"
-	  }), _vm._v(" "), _c('button', {
+	  })], 1), _vm._v(" "), _c('div', [_c('text', [_vm._v("生产批次")]), _vm._v(" "), _c('input', {
+	    staticClass: "input",
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "Input Text"
+	    },
+	    on: {
+	      "change": _vm.pbchange
+	    }
+	  })]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品类别")]), _vm._v(" "), _c('input', {
+	    staticClass: "input",
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "Input Text"
+	    },
+	    on: {
+	      "change": _vm.ptchange
+	    }
+	  })]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品代别")]), _vm._v(" "), _c('input', {
+	    staticClass: "input",
+	    attrs: {
+	      "type": "text",
+	      "placeholder": "Input Text"
+	    },
+	    on: {
+	      "change": _vm.pgchange
+	    }
+	  })]), _vm._v(" "), _c('button', {
 	    on: {
 	      "click": function($event) {
-	        _vm.jump()
+	        _vm.send()
 	      }
 	    }
-	  }, [_vm._v("跳转")])], 1)
+	  }, [_vm._v("跳转")])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-6f93b572", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-018b95ff", module.exports)
 	  }
 	}
 

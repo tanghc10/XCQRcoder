@@ -14,6 +14,7 @@
 #import "ViewController.h"
 
 @interface AppDelegate ()
+@property(nonatomic,strong)WXSDKInstance *instance;
 
 @end
 
@@ -38,7 +39,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * viewController = [[ViewController alloc] init];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.window.rootViewController = viewController;
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -71,5 +72,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(WXSDKInstance*)getWXInstance{
+    if (!_instance) {
+        _instance = [[WXSDKInstance alloc] init];
+    }
+    return _instance;
+}
 
 @end

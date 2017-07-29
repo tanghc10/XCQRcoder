@@ -52,94 +52,19 @@
 	  value: true
 	});
 
-	var _scanner = __webpack_require__(1);
+	var _sendPage = __webpack_require__(10);
 
-	var _scanner2 = _interopRequireDefault(_scanner);
+	var _sendPage2 = _interopRequireDefault(_sendPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_scanner2.default.el = '#root';
-	exports.default = new Vue(_scanner2.default);
+	_sendPage2.default.el = '#root';
+	exports.default = new Vue(_sendPage2.default);
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	
-	/* styles */
-	__webpack_require__(2)
-
-	var Component = __webpack_require__(7)(
-	  /* script */
-	  __webpack_require__(8),
-	  /* template */
-	  __webpack_require__(9),
-	  /* scopeId */
-	  null,
-	  /* cssModules */
-	  null
-	)
-	Component.options.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/scanner.vue"
-	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-	if (Component.options.functional) {console.error("[vue-loader] scanner.vue: functional components are not supported with templates, they should use render functions.")}
-
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-018b95ff", Component.options)
-	  } else {
-	    hotAPI.reload("data-v-018b95ff", Component.options)
-	  }
-	})()}
-
-	module.exports = Component.exports
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(3);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	if(content.locals) module.exports = content.locals;
-	// add the styles to the DOM
-	var update = __webpack_require__(5)("0ce7eeff", content, false);
-	// Hot Module Replacement
-	if(false) {
-	 // When the styles change, update the <style> tags
-	 if(!content.locals) {
-	   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-018b95ff!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./scanner.vue", function() {
-	     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-018b95ff!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./scanner.vue");
-	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-	     update(newContent);
-	   });
-	 }
-	 // When the module is disposed, remove the <style> tags
-	 module.hot.dispose(function() { update(); });
-	}
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px\n}\n.input{width: 400px;height: 40px\n}\n", ""]);
-
-	// exports
-
-
-/***/ }),
+/* 1 */,
+/* 2 */,
+/* 3 */,
 /* 4 */
 /***/ (function(module, exports) {
 
@@ -503,7 +428,87 @@
 
 
 /***/ }),
-/* 8 */
+/* 8 */,
+/* 9 */,
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	
+	/* styles */
+	__webpack_require__(11)
+
+	var Component = __webpack_require__(7)(
+	  /* script */
+	  __webpack_require__(13),
+	  /* template */
+	  __webpack_require__(14),
+	  /* scopeId */
+	  null,
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/pages/sendPage/sendPage.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] sendPage.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-25fa16f6", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-25fa16f6", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(12);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	if(content.locals) module.exports = content.locals;
+	// add the styles to the DOM
+	var update = __webpack_require__(5)("5d4fb1d8", content, false);
+	// Hot Module Replacement
+	if(false) {
+	 // When the styles change, update the <style> tags
+	 if(!content.locals) {
+	   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-25fa16f6!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./sendPage.vue", function() {
+	     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-25fa16f6!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./sendPage.vue");
+	     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+	     update(newContent);
+	   });
+	 }
+	 // When the module is disposed, remove the <style> tags
+	 module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n.wrapper { align-items: center; margin-top: 220px;\n}\n.title { font-size: 48px;\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 400px;height: 400px\n}\n", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -538,143 +543,24 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	var navigator = weex.requireModule('navigator');
-	var globalEvent = weex.requireModule('globalEvent');
-	var storage = weex.requireModule('storage');
-	exports.default = {
-	  created: function created() {
-	    var that = this;
-	    globalEvent.addEventListener('scannnerEvent', function (e) {
-	      that.getScannerString(e);
-	    });
-	    storage.getItem('IMEIList', function (event) {
-	      var IMEIList = event.data;
-	      console.log('--data--' + IMEIList);
-	      if (IMEIList) {
-	        IMEIList = that.getArrayWithString(IMEIList);
-	        that.totalIMEI = IMEIList.length;
-	      }
-	    });
-	  },
 
+	exports.default = {
+	  mounted: function mounted() {},
 	  data: {
-	    target: 'World',
-	    totalIMEI: 0,
-	    pbValue: 0,
-	    ptValue: 0,
-	    pgValue: 0
+	    target: 'World'
 	  },
 	  methods: {
 	    update: function update(e) {
 	      this.target = 'Weex';
 	      console.log('target:', this.target);
-	    },
-	    jump: function jump() {
-	      var scanPageURL = this.getBaseUrl(weex.config.bundleUrl) + '/' + 'sendPage.weex.js';
-	      console.log('------weex config url', weex.config.bundleUrl);
-	      console.log('------scan url', scanPageURL);
-	      navigator.push({
-	        url: scanPageURL,
-	        animated: "true"
-	      }, function (event) {
-	        console.log({ message: 'callback: ' + event });
-	      });
-	    },
-	    getBaseUrl: function getBaseUrl(url) {
-	      var urlArray = url.split('/');
-	      var newArray = urlArray.slice(0, urlArray.length - 1);
-	      return newArray.join('/');
-	    },
-	    getScannerString: function getScannerString(result) {
-	      console.log(result);
-	      var string = result.result;
-	      var newIMEI = void 0;
-	      if (string.IMEI) {
-	        newIMEI = string.IMEI;
-	      } else {
-	        var strArray = string.split(';');
-	        console.log('array' + strArray);
-	        console.log(strArray.length);
-	        if (strArray.length > 2) {
-	          console.log('--------- ');
-	          var IMEIString = strArray[2];
-	          console.log('------' + IMEIString);
-	          if (IMEIString.indexOf('IMEI') >= 0) {
-	            console.log('string' + IMEIString);
-	            newIMEI = IMEIString.split(':')[1];
-	          }
-	        }
-	      }
-	      console.log(newIMEI);
-	      this.dealWithIMEI(newIMEI);
-	    },
-	    getStringWithArray: function getStringWithArray(array) {
-	      console.log('----getStr----', array);
-	      var str = '';
-	      for (var i = 0; i < array.length; i++) {
-	        console.log('----IMEI----', array[i]);
-	        str = str + array[i] + '\n';
-	      }
-	      console.log('----result----', str);
-	      return str;
-	    },
-	    getArrayWithString: function getArrayWithString(string) {
-	      var array = string.split('\n');
-	      return array.slice(0, array.length - 1);
-	    },
-	    dealWithIMEI: function dealWithIMEI(IMEI) {
-	      var _this = this;
-
-	      storage.getItem('IMEIList', function (event) {
-	        var IMEIList = event.data;
-	        console.log('--data--' + IMEIList);
-	        if (IMEIList) {
-	          IMEIList = _this.getArrayWithString(IMEIList);
-	          console.log('storaged data -- -- --', IMEIList);
-	          for (var i = 0; i < IMEIList.length; i++) {
-	            if (IMEIList[i] == IMEI) {
-	              return;
-	            }
-	          }
-	          _this.totalIMEI++;
-	          IMEIList.push(IMEI);
-	          IMEIList = _this.getStringWithArray(IMEIList);
-	          storage.setItem('IMEIList', IMEIList);
-	        } else {
-	          IMEIList = new Array(IMEI);
-	          console.log('---imeilist', IMEIList);
-	          IMEIList = _this.getStringWithArray(IMEIList);
-	          storage.setItem('IMEIList', IMEIList, function (event) {
-	            console.log('set success', event.data);
-	          });
-	        }
-	        console.log('----storge----' + event.data);
-	      });
-	    },
-	    pbchange: function pbchange(event) {
-	      this.pbValue = event.value;
-	    },
-	    ptchange: function ptchange(event) {
-	      this.ptValue = event.value;
-	    },
-	    pgchange: function pgchange(event) {
-	      this.pgValue = event.value;
-	    },
-	    send: function send() {
-	      console.log(this.pbValue, this.ptValue, this.pgValue);
 	    }
 	  }
 	};
 
 /***/ }),
-/* 9 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -683,53 +569,15 @@
 	    on: {
 	      "click": _vm.update
 	    }
-	  }, [_c('div', {
-	    staticClass: "scanner-container"
-	  }, [_c('text', {
-	    staticClass: "counter"
-	  }, [_vm._v(_vm._s(_vm.totalIMEI == 0 ? '--' : _vm.totalIMEI))]), _vm._v(" "), _c('wxscanner', {
-	    ref: "scanner",
-	    staticClass: "scanner"
-	  })], 1), _vm._v(" "), _c('div', [_c('text', [_vm._v("生产批次")]), _vm._v(" "), _c('input', {
-	    staticClass: "input",
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Input Text"
-	    },
-	    on: {
-	      "change": _vm.pbchange
-	    }
-	  })]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品类别")]), _vm._v(" "), _c('input', {
-	    staticClass: "input",
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Input Text"
-	    },
-	    on: {
-	      "change": _vm.ptchange
-	    }
-	  })]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品代别")]), _vm._v(" "), _c('input', {
-	    staticClass: "input",
-	    attrs: {
-	      "type": "text",
-	      "placeholder": "Input Text"
-	    },
-	    on: {
-	      "change": _vm.pgchange
-	    }
-	  })]), _vm._v(" "), _c('button', {
-	    on: {
-	      "click": function($event) {
-	        _vm.send()
-	      }
-	    }
-	  }, [_vm._v("跳转")])])
-	},staticRenderFns: []}
+	  }, [_c('div', [_c('text', [_vm._v("生产批次")]), _vm._v(" "), _c('input')]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品类别")]), _vm._v(" "), _c('input')]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品代别")]), _vm._v(" "), _c('input')]), _vm._v(" "), _vm._m(0)])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', [_c('button', [_vm._v("发送")])])
+	}]}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-018b95ff", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-25fa16f6", module.exports)
 	  }
 	}
 
