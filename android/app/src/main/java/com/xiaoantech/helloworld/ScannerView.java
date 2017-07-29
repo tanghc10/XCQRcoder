@@ -6,14 +6,19 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.dom.WXDomObject;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.component.WXVContainer;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,9 +41,13 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
 
     @Override
     protected View initComponentHostView(@NonNull Context context) {
+        XmlPullParser parser = context.getResources().getXml(R.xml.scan_view_attr);
+        AttributeSet attributes = Xml.asAttributeSet(parser);
         mQRCodeView = new ZXingView(getContext(),null);
+        mQRCodeView.hiddenScanRect();
         mQRCodeView.setResultHandler(this);
         mQRCodeView.startCamera();
+        //AnimationUtils.loadAnimation()
         mQRCodeView.startSpot();
         return mQRCodeView;
     }
@@ -52,9 +61,9 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
     public void onScanQRCodeSuccess(String result) {
         Log.d(TAG,result);
         Map<String,Object> params=new HashMap<>();
-        params.put("key","value");
+        params.put("result",result);
         WXSDKInstance mWXSDKInstance = new WXSDKInstance(getContext());
-        mWXSDKInstance.fireGlobalEventCallback("geolocation",params);
+        mWXSDKInstance.fireGlobalEventCallback("scannnerEvent",params);
 
     }
 

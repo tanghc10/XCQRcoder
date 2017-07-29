@@ -14,7 +14,7 @@
         "serve": "node build/init.js && serve -p 8080",
         "compile": "weex compile src/ dist/",
         "copy": "npm run copy:android && npm run copy:ios",
-        "copy:android": "cp -r dist/. android/app/src/main/assets/",
+        "copy:android": "copy .\\dist\\. .\\android\\app\\src\\main\\assets\\",
         "copy:ios": "cp -r dist/. ios/assets/",
         "debug": "weex-devtool"
     },
