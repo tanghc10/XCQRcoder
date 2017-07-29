@@ -6,15 +6,15 @@
     </div>
   <div>
     <text>生产批次</text>
-    <input class="input" type="text" placeholder="Input Text" @change="pbchange">1</input>
+    <input class="input" type="text" placeholder="Input Text" @change="pbchange"></input>
   </div>
   <div>
     <text>产品类别</text>
-    <input class="input" type="text" placeholder="Input Text" @change="ptchange">1</input>
+    <input class="input" type="text" placeholder="Input Text" @change="ptchange"></input>
   </div>
   <div>
     <text>产品代别</text>
-    <input class="input" type="text" placeholder="Input Text" @change="pgchange">1</input>
+    <input class="input" type="text" placeholder="Input Text" @change="pgchange"></input>
   </div>
     <button @click="send()" class="button">发送</button>
     <button @click="clear()" class="button">清除数据</button>
@@ -28,7 +28,7 @@
   .counter{font-size: 48px}
   .logo { width: 360px; height: 82px; }
   .scanner{width: 500px;height: 500px;margin: 50px}
-  .button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background: green}
+  .button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background-color: green}
   .input{width: 400px;height: 40px;background-color: gray}
 </style>
 
@@ -37,7 +37,7 @@
     const globalEvent = weex.requireModule('globalEvent');
     const storage = weex.requireModule('storage')
     const http = weex.requireModule('http')
-
+    const modal = weex.requireModule('modal')
   export default {
 
     created(){
@@ -103,6 +103,7 @@
           }
         }
         console.log(newIMEI);
+        if(typeof(newIMEI)!="undefined")
         this.dealWithIMEI(newIMEI);
       },
        getStringWithArray(array) {
@@ -173,7 +174,8 @@
             param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
             param.sendParam = sendParam;
             http.postwithDic(param,function(res){
-              console.log(res);
+              let result =  res.suc;
+              modal.alert({message:result?'上传成功':'上传失败'})
             })
           }
         });
@@ -181,9 +183,17 @@
       },
       clear(){
         let that = this;
-        storage.removeItem("IMEIList",function(e){
-          if(typeof(e.data)=="undefined"){
-            that.totalIMEI = 0;
+        modal.confirm({
+          message:'确认清除所有扫码设备？',
+          okTitle:'确认',
+          cancelTitle:'取消'
+        },function(e){
+          if(e=='确认'){
+            storage.removeItem("IMEIList",function(e){
+              if(typeof(e.data)=="undefined"){
+                that.totalIMEI = 0;
+              }
+            })
           }
         })
       }

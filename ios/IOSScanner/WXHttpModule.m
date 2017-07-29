@@ -25,7 +25,7 @@ WX_EXPORT_METHOD(@selector(postwithDic:callback:))
               NSData *data = (NSData *)responseObject;
               NSError *error;
               NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-              callback(@{@"success":dic});
+              callback(@{@"success":dic[@"error"]});
           }failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               callback(@{@"fail":error.description});
           }];
