@@ -16,7 +16,8 @@
     <text>产品代别</text>
     <input class="input" type="text" placeholder="Input Text" @change="pgchange"></input>
   </div>
-    <button @click="send()">跳转</button>
+    <button @click="send()" class="button">发送</button>
+    <button @click="clear()" class="button">清除数据</button>
   </div>
 </template>
 
@@ -26,20 +27,28 @@
   .title { font-size: 48px; }
   .counter{font-size: 48px}
   .logo { width: 360px; height: 82px; }
+<<<<<<< HEAD
   .scanner{width: 500px;height: 500px;}
   .button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px}
   .input{width: 400px;height: 40px}
+=======
+  .scanner{width: 500px;height: 500px;margin: 50px}
+  .button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background-color: green}
+  .input{width: 400px;height: 40px;background-color: gray}
+>>>>>>> 1207241271/dev/20170726-vue
 </style>
 
 <script>
     var navigator = weex.requireModule('navigator')
     const globalEvent = weex.requireModule('globalEvent');
     const storage = weex.requireModule('storage')
+    const http = weex.requireModule('http')
+    const modal = weex.requireModule('modal')
   export default {
 
     created(){
       let that = this;
-      globalEvent.addEventListener('scannnerEvent', function(e){
+      globalEvent.addEventListener('scannerEvent', function(e){
           that.getScannerString(e);
       });
       storage.getItem('IMEIList',event=>{
@@ -100,6 +109,7 @@
           }
         }
         console.log(newIMEI);
+        if(typeof(newIMEI)!="undefined")
         this.dealWithIMEI(newIMEI);
       },
        getStringWithArray(array) {
@@ -119,7 +129,8 @@
         storage.getItem('IMEIList',event=>{
           let IMEIList = event.data;
           console.log('--data--'+IMEIList);
-          if(IMEIList){
+          console.log(typeof(IMEIList));
+          if(typeof(IMEIList)!="undefined"){
             IMEIList = this.getArrayWithString(IMEIList);
             console.log('storaged data -- -- --',IMEIList);
             for(var i=0;i<IMEIList.length;i++){
@@ -137,6 +148,7 @@
             IMEIList = this.getStringWithArray(IMEIList)
             storage.setItem('IMEIList',IMEIList,event => {
               console.log('set success',event.data);
+                          this.totalIMEI ++;
            });
           }
           console.log('----storge----'+event.data);
@@ -153,6 +165,43 @@
       },
       send(){
         console.log(this.pbValue,this.ptValue,this.pgValue);
+        let that = this;
+        storage.getItem('IMEIList',event=>{
+          let IMEIList = event.data;
+          console.log('--data--'+IMEIList);
+          if(IMEIList){
+            IMEIList = this.getArrayWithString(IMEIList);
+            let param = new Map();
+            let sendParam = new Map();
+            sendParam.imeiList = IMEIList;
+            sendParam.pb = that.pbValue;
+            sendParam.pt = that.ptValue;
+            sendParam.pg = that.pgValue;
+            param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
+            param.sendParam = sendParam;
+            http.postwithDic(param,function(res){
+              let result =  res.suc;
+              modal.alert({message:result?'上传成功':'上传失败'})
+            })
+          }
+        });
+
+      },
+      clear(){
+        let that = this;
+        modal.confirm({
+          message:'确认清除所有扫码设备？',
+          okTitle:'确认',
+          cancelTitle:'取消'
+        },function(e){
+          if(e=='确认'){
+            storage.removeItem("IMEIList",function(e){
+              if(typeof(e.data)=="undefined"){
+                that.totalIMEI = 0;
+              }
+            })
+          }
+        })
       }
     }
   }
