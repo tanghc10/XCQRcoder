@@ -122,7 +122,7 @@ WX_EXPORT_METHOD(@selector(stopReading))
             if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
                 NSData *jsonData = [[metadataObj stringValue] dataUsingEncoding:NSUTF8StringEncoding];
                 NSString *string = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                [_instance fireGlobalEvent:@"scannnerEvent" params:@{@"result":string}];
+                [_instance fireGlobalEvent:@"scannerEvent" params:@{@"result":string}];
                 [self startReading];
             }
         });

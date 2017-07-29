@@ -134,7 +134,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px\n}\n.input{width: 400px;height: 40px\n}\n", ""]);
+	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background: green\n}\n.input{width: 400px;height: 40px;background-color: gray\n}\n", ""]);
 
 	// exports
 
@@ -511,6 +511,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	//
 	//
 	//
 	//
@@ -548,10 +552,12 @@
 	var navigator = weex.requireModule('navigator');
 	var globalEvent = weex.requireModule('globalEvent');
 	var storage = weex.requireModule('storage');
+	var http = weex.requireModule('http');
+
 	exports.default = {
 	  created: function created() {
 	    var that = this;
-	    globalEvent.addEventListener('scannnerEvent', function (e) {
+	    globalEvent.addEventListener('scannerEvent', function (e) {
 	      that.getScannerString(e);
 	    });
 	    storage.getItem('IMEIList', function (event) {
@@ -635,7 +641,8 @@
 	      storage.getItem('IMEIList', function (event) {
 	        var IMEIList = event.data;
 	        console.log('--data--' + IMEIList);
-	        if (IMEIList) {
+	        console.log(typeof IMEIList === 'undefined' ? 'undefined' : _typeof(IMEIList));
+	        if (typeof IMEIList != "undefined") {
 	          IMEIList = _this.getArrayWithString(IMEIList);
 	          console.log('storaged data -- -- --', IMEIList);
 	          for (var i = 0; i < IMEIList.length; i++) {
@@ -653,6 +660,7 @@
 	          IMEIList = _this.getStringWithArray(IMEIList);
 	          storage.setItem('IMEIList', IMEIList, function (event) {
 	            console.log('set success', event.data);
+	            _this.totalIMEI++;
 	          });
 	        }
 	        console.log('----storge----' + event.data);
@@ -668,7 +676,36 @@
 	      this.pgValue = event.value;
 	    },
 	    send: function send() {
+	      var _this2 = this;
+
 	      console.log(this.pbValue, this.ptValue, this.pgValue);
+	      var that = this;
+	      storage.getItem('IMEIList', function (event) {
+	        var IMEIList = event.data;
+	        console.log('--data--' + IMEIList);
+	        if (IMEIList) {
+	          IMEIList = _this2.getArrayWithString(IMEIList);
+	          var param = new Map();
+	          var sendParam = new Map();
+	          sendParam.imeiList = IMEIList;
+	          sendParam.pb = that.pbValue;
+	          sendParam.pt = that.ptValue;
+	          sendParam.pg = that.pgValue;
+	          param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
+	          param.sendParam = sendParam;
+	          http.postwithDic(param, function (res) {
+	            console.log(res);
+	          });
+	        }
+	      });
+	    },
+	    clear: function clear() {
+	      var that = this;
+	      storage.removeItem("IMEIList", function (e) {
+	        if (typeof e.data == "undefined") {
+	          that.totalIMEI = 0;
+	        }
+	      });
 	    }
 	  }
 	};
@@ -699,7 +736,7 @@
 	    on: {
 	      "change": _vm.pbchange
 	    }
-	  })]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品类别")]), _vm._v(" "), _c('input', {
+	  }), _vm._v("1")]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品类别")]), _vm._v(" "), _c('input', {
 	    staticClass: "input",
 	    attrs: {
 	      "type": "text",
@@ -708,7 +745,7 @@
 	    on: {
 	      "change": _vm.ptchange
 	    }
-	  })]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品代别")]), _vm._v(" "), _c('input', {
+	  }), _vm._v("1")]), _vm._v(" "), _c('div', [_c('text', [_vm._v("产品代别")]), _vm._v(" "), _c('input', {
 	    staticClass: "input",
 	    attrs: {
 	      "type": "text",
@@ -717,13 +754,21 @@
 	    on: {
 	      "change": _vm.pgchange
 	    }
-	  })]), _vm._v(" "), _c('button', {
+	  }), _vm._v("1")]), _vm._v(" "), _c('button', {
+	    staticClass: "button",
 	    on: {
 	      "click": function($event) {
 	        _vm.send()
 	      }
 	    }
-	  }, [_vm._v("跳转")])])
+	  }, [_vm._v("发送")]), _vm._v(" "), _c('button', {
+	    staticClass: "button",
+	    on: {
+	      "click": function($event) {
+	        _vm.clear()
+	      }
+	    }
+	  }, [_vm._v("清除数据")])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {

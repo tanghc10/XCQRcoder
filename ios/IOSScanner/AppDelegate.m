@@ -12,7 +12,7 @@
 #import "WXScannerComponent.h"
 #import <TBWXDevtool/WXDevtool.h>
 #import "ViewController.h"
-
+#import "WXHttpModule.h"
 @interface AppDelegate ()
 @property(nonatomic,strong)WXSDKInstance *instance;
 
@@ -32,6 +32,7 @@
     [WXAppConfiguration setAppVersion:@"1.0.0"];
     //init sdk enviroment
     [WXSDKEngine initSDKEnviroment];
+    [WXSDKEngine registerModule:@"http" withClass:[WXHttpModule class]];
     [WXSDKEngine registerComponent:@"wxscanner" withClass:[WXScannerComponent class]];
     [WXLog setLogLevel: WXLogLevelLog];
     

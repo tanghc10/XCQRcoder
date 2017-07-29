@@ -6,17 +6,18 @@
     </div>
   <div>
     <text>生产批次</text>
-    <input class="input" type="text" placeholder="Input Text" @change="pbchange"></input>
+    <input class="input" type="text" placeholder="Input Text" @change="pbchange">1</input>
   </div>
   <div>
     <text>产品类别</text>
-    <input class="input" type="text" placeholder="Input Text" @change="ptchange"></input>
+    <input class="input" type="text" placeholder="Input Text" @change="ptchange">1</input>
   </div>
   <div>
     <text>产品代别</text>
-    <input class="input" type="text" placeholder="Input Text" @change="pgchange"></input>
+    <input class="input" type="text" placeholder="Input Text" @change="pgchange">1</input>
   </div>
-    <button @click="send()">跳转</button>
+    <button @click="send()" class="button">发送</button>
+    <button @click="clear()" class="button">清除数据</button>
   </div>
 </template>
 
@@ -27,19 +28,21 @@
   .counter{font-size: 48px}
   .logo { width: 360px; height: 82px; }
   .scanner{width: 500px;height: 500px;margin: 50px}
-  .button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px}
-  .input{width: 400px;height: 40px}
+  .button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background: green}
+  .input{width: 400px;height: 40px;background-color: gray}
 </style>
 
 <script>
     var navigator = weex.requireModule('navigator')
     const globalEvent = weex.requireModule('globalEvent');
     const storage = weex.requireModule('storage')
+    const http = weex.requireModule('http')
+
   export default {
 
     created(){
       let that = this;
-      globalEvent.addEventListener('scannnerEvent', function(e){
+      globalEvent.addEventListener('scannerEvent', function(e){
           that.getScannerString(e);
       });
       storage.getItem('IMEIList',event=>{
@@ -119,7 +122,8 @@
         storage.getItem('IMEIList',event=>{
           let IMEIList = event.data;
           console.log('--data--'+IMEIList);
-          if(IMEIList){
+          console.log(typeof(IMEIList));
+          if(typeof(IMEIList)!="undefined"){
             IMEIList = this.getArrayWithString(IMEIList);
             console.log('storaged data -- -- --',IMEIList);
             for(var i=0;i<IMEIList.length;i++){
@@ -137,6 +141,7 @@
             IMEIList = this.getStringWithArray(IMEIList)
             storage.setItem('IMEIList',IMEIList,event => {
               console.log('set success',event.data);
+                          this.totalIMEI ++;
            });
           }
           console.log('----storge----'+event.data);
@@ -153,6 +158,34 @@
       },
       send(){
         console.log(this.pbValue,this.ptValue,this.pgValue);
+        let that = this;
+        storage.getItem('IMEIList',event=>{
+          let IMEIList = event.data;
+          console.log('--data--'+IMEIList);
+          if(IMEIList){
+            IMEIList = this.getArrayWithString(IMEIList);
+            let param = new Map();
+            let sendParam = new Map();
+            sendParam.imeiList = IMEIList;
+            sendParam.pb = that.pbValue;
+            sendParam.pt = that.ptValue;
+            sendParam.pg = that.pgValue;
+            param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
+            param.sendParam = sendParam;
+            http.postwithDic(param,function(res){
+              console.log(res);
+            })
+          }
+        });
+
+      },
+      clear(){
+        let that = this;
+        storage.removeItem("IMEIList",function(e){
+          if(typeof(e.data)=="undefined"){
+            that.totalIMEI = 0;
+          }
+        })
       }
     }
   }

@@ -135,12 +135,15 @@
 	  "button": {
 	    "width": 200,
 	    "height": 80,
-	    "fontSize": 40,
-	    "marginTop": 100
+	    "fontSize": 100,
+	    "marginTop": 50,
+	    "textAlign": "center",
+	    "background": "green"
 	  },
 	  "input": {
 	    "width": 400,
-	    "height": 40
+	    "height": 40,
+	    "backgroundColor": "#808080"
 	  }
 	}
 
@@ -153,6 +156,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	//
 	//
 	//
 	//
@@ -190,10 +197,12 @@
 	var navigator = weex.requireModule('navigator');
 	var globalEvent = weex.requireModule('globalEvent');
 	var storage = weex.requireModule('storage');
+	var http = weex.requireModule('http');
+
 	exports.default = {
 	  created: function created() {
 	    var that = this;
-	    globalEvent.addEventListener('scannnerEvent', function (e) {
+	    globalEvent.addEventListener('scannerEvent', function (e) {
 	      that.getScannerString(e);
 	    });
 	    storage.getItem('IMEIList', function (event) {
@@ -277,7 +286,8 @@
 	      storage.getItem('IMEIList', function (event) {
 	        var IMEIList = event.data;
 	        console.log('--data--' + IMEIList);
-	        if (IMEIList) {
+	        console.log(typeof IMEIList === 'undefined' ? 'undefined' : _typeof(IMEIList));
+	        if (typeof IMEIList != "undefined") {
 	          IMEIList = _this.getArrayWithString(IMEIList);
 	          console.log('storaged data -- -- --', IMEIList);
 	          for (var i = 0; i < IMEIList.length; i++) {
@@ -295,6 +305,7 @@
 	          IMEIList = _this.getStringWithArray(IMEIList);
 	          storage.setItem('IMEIList', IMEIList, function (event) {
 	            console.log('set success', event.data);
+	            _this.totalIMEI++;
 	          });
 	        }
 	        console.log('----storge----' + event.data);
@@ -310,7 +321,36 @@
 	      this.pgValue = event.value;
 	    },
 	    send: function send() {
+	      var _this2 = this;
+
 	      console.log(this.pbValue, this.ptValue, this.pgValue);
+	      var that = this;
+	      storage.getItem('IMEIList', function (event) {
+	        var IMEIList = event.data;
+	        console.log('--data--' + IMEIList);
+	        if (IMEIList) {
+	          IMEIList = _this2.getArrayWithString(IMEIList);
+	          var param = new Map();
+	          var sendParam = new Map();
+	          sendParam.imeiList = IMEIList;
+	          sendParam.pb = that.pbValue;
+	          sendParam.pt = that.ptValue;
+	          sendParam.pg = that.pgValue;
+	          param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
+	          param.sendParam = sendParam;
+	          http.postwithDic(param, function (res) {
+	            console.log(res);
+	          });
+	        }
+	      });
+	    },
+	    clear: function clear() {
+	      var that = this;
+	      storage.removeItem("IMEIList", function (e) {
+	        if (typeof e.data == "undefined") {
+	          that.totalIMEI = 0;
+	        }
+	      });
 	    }
 	  }
 	};
@@ -341,7 +381,7 @@
 	    on: {
 	      "change": _vm.pbchange
 	    }
-	  })]), _c('div', [_c('text', [_vm._v("产品类别")]), _c('input', {
+	  }, [_vm._v("1")])]), _c('div', [_c('text', [_vm._v("产品类别")]), _c('input', {
 	    staticClass: ["input"],
 	    attrs: {
 	      "type": "text",
@@ -350,7 +390,7 @@
 	    on: {
 	      "change": _vm.ptchange
 	    }
-	  })]), _c('div', [_c('text', [_vm._v("产品代别")]), _c('input', {
+	  }, [_vm._v("1")])]), _c('div', [_c('text', [_vm._v("产品代别")]), _c('input', {
 	    staticClass: ["input"],
 	    attrs: {
 	      "type": "text",
@@ -359,13 +399,21 @@
 	    on: {
 	      "change": _vm.pgchange
 	    }
-	  })]), _c('button', {
+	  }, [_vm._v("1")])]), _c('button', {
+	    staticClass: ["button"],
 	    on: {
 	      "click": function($event) {
 	        _vm.send()
 	      }
 	    }
-	  }, [_vm._v("跳转")])], 1)
+	  }, [_vm._v("发送")]), _c('button', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": function($event) {
+	        _vm.clear()
+	      }
+	    }
+	  }, [_vm._v("清除数据")])], 1)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 
