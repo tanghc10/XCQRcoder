@@ -52,14 +52,14 @@
 	  value: true
 	});
 
-	var _sendPage = __webpack_require__(5);
+	var _scanPage = __webpack_require__(5);
 
-	var _sendPage2 = _interopRequireDefault(_sendPage);
+	var _scanPage2 = _interopRequireDefault(_scanPage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_sendPage2.default.el = '#root';
-	exports.default = new Vue(_sendPage2.default);
+	_scanPage2.default.el = '#root';
+	exports.default = new Vue(_scanPage2.default);
 
 /***/ }),
 /* 1 */,
@@ -92,10 +92,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/pages/sendPage/sendPage.vue"
+	__vue_options__.__file = "F:\\githubFile\\XCQRcoder\\src\\pages\\scanPage\\scanPage.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-13f8922f"
+	__vue_options__._scopeId = "data-v-4ace1494"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -155,24 +155,24 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	var navigator = weex.requireModule('navigator');
 
 	exports.default = {
-	  mounted: function mounted() {},
+	  mounted: function mounted() {
+	    // let that = this.$root;
+	    // console.log('el',this.$refs.scanner);
+	    // this.$refs.scanner.focus();
+	    // this.$refs.scanner.startReading();
+	    navigator.push({
+	      url: './scanner.js',
+	      animated: "true"
+	    }, function (event) {
+	      console.log({ message: 'callback: ' + event });
+	    });
+	  },
 	  data: {
+	    logoUrl: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png',
 	    target: 'World'
 	  },
 	  methods: {
@@ -188,19 +188,14 @@
 /***/ (function(module, exports) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: ["wrapper"],
-	    on: {
-	      "click": _vm.update
+	  return _c('wxscanner', {
+	    ref: "scanner",
+	    staticClass: ["scanner"],
+	    attrs: {
+	      "id": "wxScanner"
 	    }
-	  }, [_vm._m(0), _vm._m(1), _vm._m(2), _c('div', [_c('button', [_vm._v("发送")])], 1)])
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('text', [_vm._v("生产批次")]), _c('input')])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('text', [_vm._v("产品类别")]), _c('input')])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('text', [_vm._v("产品代别")]), _c('input')])
-	}]}
+	  })
+	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 
 /***/ })

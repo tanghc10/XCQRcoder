@@ -79,7 +79,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/scanner.vue"
+	Component.options.__file = "F:\\githubFile\\XCQRcoder\\src\\scanner.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] scanner.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -134,7 +134,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px\n}\n.input{width: 400px;height: 40px\n}\n", ""]);
+	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;\n}\n.button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px\n}\n.input{width: 400px;height: 40px\n}\n", ""]);
 
 	// exports
 

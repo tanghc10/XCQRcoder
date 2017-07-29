@@ -88,10 +88,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/scanner.vue"
+	__vue_options__.__file = "F:\\githubFile\\XCQRcoder\\src\\scanner.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-af9470ae"
+	__vue_options__._scopeId = "data-v-50d57a20"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -129,8 +129,7 @@
 	  },
 	  "scanner": {
 	    "width": 500,
-	    "height": 500,
-	    "margin": 50
+	    "height": 500
 	  },
 	  "button": {
 	    "width": 200,

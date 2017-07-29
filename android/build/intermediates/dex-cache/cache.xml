@@ -2,31 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/yangxu/.android/build-cache/f23494bc67af6a75d97cdc452f50a70b6bbfa0ba/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="F:\githubFile\XCQRcoder\android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="6a94a0ea4b242ee4eab28758a938e59bea7056de">
-        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_695ef156c860e43af7a118bf7f8de3e40b7d966f.jar" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="F:\githubFile\XCQRcoder\android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_1779cc0d8c702edea8be3df53a7c362d2c5e8b51\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/yangxu/.android/build-cache/d4c855d84d2cbb94ea8b2ea6528d3d7aec9332bd/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="F:\githubFile\XCQRcoder\android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="c653624d076ca02a19d6abb2b5dd8722f1b7e009">
-        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_9e5e8ce3c972f4e12b0c049fe8543fdb7eab938d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/yangxu/.android/build-cache/15381d00363bb76170ebfbb8fb2b7070620249bd/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="01e4ca7c8b6055fccf58bcfaf52093f0fa26c811">
-        <dex dex="/Users/yangxu/Documents/workspace/weex/XCQRcoder/android/app/build/intermediates/pre-dexed/debug/classes_6fee6a1d7d772875260e47d995bfb19179f8b423.jar" />
+        sha1="5a8a4c2db0f5d31610654ae7edca328b294e7e96">
+        <dex dex="F:\githubFile\XCQRcoder\android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a3c3e1c6ff29396bf2d50912562a9045c21ddd6f\classes.dex" />
     </item>
 
 </items>

@@ -19,7 +19,9 @@ import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.component.WXVContainer;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,9 +44,21 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
     @Override
     protected View initComponentHostView(@NonNull Context context) {
         XmlPullParser parser = context.getResources().getXml(R.xml.scan_view_attr);
+        // Seek to the first tag.
+        int type = 0;
+        while (type != XmlPullParser.END_DOCUMENT && type != XmlPullParser.START_TAG) {
+            try {
+                type = parser.next();
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         AttributeSet attributes = Xml.asAttributeSet(parser);
-        mQRCodeView = new ZXingView(getContext(),null);
-        mQRCodeView.hiddenScanRect();
+        mQRCodeView = new ZXingView(getContext(),attributes);
+        //mQRCodeView.hiddenScanRect();
         mQRCodeView.setResultHandler(this);
         mQRCodeView.startCamera();
         //AnimationUtils.loadAnimation()
@@ -63,7 +77,7 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
         Map<String,Object> params=new HashMap<>();
         params.put("result",result);
         WXSDKInstance mWXSDKInstance = new WXSDKInstance(getContext());
-        mWXSDKInstance.fireGlobalEventCallback("scannnerEvent",params);
+        mWXSDKInstance.fireGlobalEventCallback("scannerEvent",params);
 
     }
 

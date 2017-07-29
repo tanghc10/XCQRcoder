@@ -26,7 +26,7 @@
   .title { font-size: 48px; }
   .counter{font-size: 48px}
   .logo { width: 360px; height: 82px; }
-  .scanner{width: 500px;height: 500px;margin: 50px}
+  .scanner{width: 500px;height: 500px;}
   .button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px}
   .input{width: 400px;height: 40px}
 </style>

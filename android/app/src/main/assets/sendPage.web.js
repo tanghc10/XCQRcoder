@@ -447,7 +447,7 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/Users/yangxu/Documents/workspace/weex/XCQRcoder/src/pages/sendPage/sendPage.vue"
+	Component.options.__file = "F:\\githubFile\\XCQRcoder\\src\\pages\\sendPage\\sendPage.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 	if (Component.options.functional) {console.error("[vue-loader] sendPage.vue: functional components are not supported with templates, they should use render functions.")}
 
