@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
+import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXException;
 
 
@@ -21,6 +22,7 @@ public class WXApplication extends Application {
         WXSDKEngine.initialize(this,config);
         try {
             WXSDKEngine.registerComponent("wxscanner", ScannerView.class,true);
+            WXSDKEngine.registerModule("http", HttpPostModule.class);
         } catch (WXException e) {
             e.printStackTrace();
         }

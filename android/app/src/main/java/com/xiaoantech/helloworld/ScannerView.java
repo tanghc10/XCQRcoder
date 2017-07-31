@@ -57,18 +57,11 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
         }
         AttributeSet attributes = Xml.asAttributeSet(parser);
         mQRCodeView = new ZXingView(getContext(),attributes);
-        //mQRCodeView.hiddenScanRect();
         mQRCodeView.setResultHandler(this);
         mQRCodeView.startCamera();
-        //AnimationUtils.loadAnimation()
         mQRCodeView.startSpot();
         return mQRCodeView;
     }
-    //    protected void initComponentHostView(Context context) {
-//        super.initComponentHostView(context);
-//        mQRCodeView = new ZXingView(getContext(),null);
-//        mQRCodeView.setResultHandler(this);
-//    }
 
     @Override
     public void onScanQRCodeSuccess(String result) {
@@ -76,6 +69,8 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
         Map<String,Object> params=new HashMap<>();
         params.put("result",result);
         getInstance().fireGlobalEventCallback("scannerEvent",params);
+
+        startReading();
 
     }
 
@@ -91,9 +86,7 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
 
     @Override
     public void onScanQRCodeOpenCameraError() {
-        Log.d(TAG,"scan open");
+        Log.d(TAG,"scan open error");
     }
-
-
 
 }

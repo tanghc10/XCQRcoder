@@ -134,7 +134,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background-color: green\n}\n.input{width: 400px;height: 40px;background-color: gray\n}\n", ""]);
+	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 50px;font-size: 100px;margin-top: 20px;text-align: center;background-color: green\n}\n.input{width: 400px;height: 40px;background-color: gray\n}\n", ""]);
 
 	// exports
 
@@ -686,16 +686,25 @@
 	        console.log('--data--' + IMEIList);
 	        if (IMEIList) {
 	          IMEIList = _this2.getArrayWithString(IMEIList);
-	          var param = new Map();
-	          var sendParam = new Map();
-	          sendParam.imeiList = IMEIList;
-	          sendParam.pb = that.pbValue;
-	          sendParam.pt = that.ptValue;
-	          sendParam.pg = that.pgValue;
-	          param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
-	          param.sendParam = sendParam;
+	          var sendParam = '{"imeiList":[' + IMEIList + '],';
+	          console.log("sendParam1:  " + sendParam);
+	          sendParam = sendParam + '"pb":"' + that.pbValue + '","pt":"' + that.ptValue + '","pg":"' + that.pgValue + '"}';
+	          console.log("sendParam2:  " + sendParam);
+	          var param = '{"url":"https://test.xiaoan110.com/scm/procedure/imei2Sn","sendParam":' + sendParam + '}';
+	          console.log("param:  " + param);
+	          // let param = new Map();
+	          // let sendParam = new Map();
+	          // sendParam.imeiList = IMEIList;
+	          // sendParam.pb = that.pbValue;
+	          // sendParam.pt = that.ptValue;
+	          // sendParam.pg = that.pgValue;
+	          // param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
+	          // param.sendParam = sendParam;
 	          http.postwithDic(param, function (res) {
-	            var result = res.suc;
+	            console.log("response:" + res);
+	            var obj = JSON.parse(res);
+	            var result = obj.suc;
+	            console.log("result:" + result);
 	            modal.alert({ message: result ? '上传成功' : '上传失败' });
 	          });
 	        }

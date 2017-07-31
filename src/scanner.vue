@@ -28,7 +28,7 @@
   .counter{font-size: 48px}
   .logo { width: 360px; height: 82px; }
   .scanner{width: 500px;height: 500px;margin: 50px}
-  .button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background-color: green}
+  .button{width: 200px;height: 50px;font-size: 100px;margin-top: 20px;text-align: center;background-color: green}
   .input{width: 400px;height: 40px;background-color: gray}
 </style>
 
@@ -166,16 +166,25 @@
           console.log('--data--'+IMEIList);
           if(IMEIList){
             IMEIList = this.getArrayWithString(IMEIList);
-            let param = new Map();
-            let sendParam = new Map();
-            sendParam.imeiList = IMEIList;
-            sendParam.pb = that.pbValue;
-            sendParam.pt = that.ptValue;
-            sendParam.pg = that.pgValue;
-            param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
-            param.sendParam = sendParam;
+            let sendParam = '{"imeiList":['+IMEIList+'],';
+            console.log("sendParam1:  "+sendParam);
+            sendParam = sendParam + '"pb":"' + that.pbValue + '","pt":"' + that.ptValue + '","pg":"' + that.pgValue + '"}';
+            console.log("sendParam2:  "+sendParam);
+            let param = '{"url":"https://test.xiaoan110.com/scm/procedure/imei2Sn","sendParam":' + sendParam + '}';
+            console.log("param:  "+param);
+            // let param = new Map();
+            // let sendParam = new Map();
+            // sendParam.imeiList = IMEIList;
+            // sendParam.pb = that.pbValue;
+            // sendParam.pt = that.ptValue;
+            // sendParam.pg = that.pgValue;
+            // param.url = 'https://test.xiaoan110.com/scm/procedure/imei2Sn';
+            // param.sendParam = sendParam;
             http.postwithDic(param,function(res){
-              let result =  res.suc;
+              console.log("response:"+res);
+              let obj = JSON.parse(res);
+              let result =  obj.suc;
+              console.log("result:"+result);
               modal.alert({message:result?'上传成功':'上传失败'})
             })
           }
