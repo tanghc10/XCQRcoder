@@ -27,15 +27,9 @@
   .title { font-size: 48px; }
   .counter{font-size: 48px}
   .logo { width: 360px; height: 82px; }
-<<<<<<< HEAD
-  .scanner{width: 500px;height: 500px;}
-  .button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px}
-  .input{width: 400px;height: 40px}
-=======
   .scanner{width: 500px;height: 500px;margin: 50px}
   .button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background-color: green}
   .input{width: 400px;height: 40px;background-color: gray}
->>>>>>> 1207241271/dev/20170726-vue
 </style>
 
 <script>
@@ -49,6 +43,7 @@
     created(){
       let that = this;
       globalEvent.addEventListener('scannerEvent', function(e){
+          console.log(e);
           that.getScannerString(e);
       });
       storage.getItem('IMEIList',event=>{

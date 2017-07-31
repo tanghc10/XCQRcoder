@@ -55,7 +55,6 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
                 e.printStackTrace();
             }
         }
-
         AttributeSet attributes = Xml.asAttributeSet(parser);
         mQRCodeView = new ZXingView(getContext(),attributes);
         //mQRCodeView.hiddenScanRect();
@@ -76,8 +75,7 @@ public class ScannerView extends WXComponent implements QRCodeView.Delegate{
         Log.d(TAG,result);
         Map<String,Object> params=new HashMap<>();
         params.put("result",result);
-        WXSDKInstance mWXSDKInstance = new WXSDKInstance(getContext());
-        mWXSDKInstance.fireGlobalEventCallback("scannerEvent",params);
+        getInstance().fireGlobalEventCallback("scannerEvent",params);
 
     }
 

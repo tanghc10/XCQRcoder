@@ -2,6 +2,5 @@
 <ScannerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scanner_view"
-    app:qrcv_topOffset="0dp"
-    app:qrcv_rectWidth="500dp">
+    app:qrcv_topOffset="0dp">
 </ScannerView>

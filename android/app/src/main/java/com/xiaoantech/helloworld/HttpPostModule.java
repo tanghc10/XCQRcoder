@@ -2,6 +2,7 @@ package com.xiaoantech.helloworld;
 
 import android.widget.Toast;
 
+import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXModule;
 import com.taobao.weex.common.WXModuleAnno;
 

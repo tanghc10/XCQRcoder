@@ -134,11 +134,7 @@
 
 
 	// module
-<<<<<<< HEAD
-	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;\n}\n.button{width: 200px;height: 80px;font-size: 40px;margin-top: 100px\n}\n.input{width: 400px;height: 40px\n}\n", ""]);
-=======
 	exports.push([module.id, "\n.wrapper { align-items: center;\n}\n.scanner-container {align-items: center;margin-top: 100px\n}\n.title { font-size: 48px;\n}\n.counter{font-size: 48px\n}\n.logo { width: 360px; height: 82px;\n}\n.scanner{width: 500px;height: 500px;margin: 50px\n}\n.button{width: 200px;height: 80px;font-size: 100px;margin-top: 50px;text-align: center;background-color: green\n}\n.input{width: 400px;height: 40px;background-color: gray\n}\n", ""]);
->>>>>>> 1207241271/dev/20170726-vue
 
 	// exports
 
@@ -562,6 +558,7 @@
 	  created: function created() {
 	    var that = this;
 	    globalEvent.addEventListener('scannerEvent', function (e) {
+	      console.log(e);
 	      that.getScannerString(e);
 	    });
 	    storage.getItem('IMEIList', function (event) {

@@ -129,7 +129,8 @@
 	  },
 	  "scanner": {
 	    "width": 500,
-	    "height": 500
+	    "height": 500,
+	    "margin": 50
 	  },
 	  "button": {
 	    "width": 200,
@@ -202,6 +203,7 @@
 	  created: function created() {
 	    var that = this;
 	    globalEvent.addEventListener('scannerEvent', function (e) {
+	      console.log(e);
 	      that.getScannerString(e);
 	    });
 	    storage.getItem('IMEIList', function (event) {
